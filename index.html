@@ -1,108 +1,18 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
-  <title>Graphique en chandeliers des cryptomonnaies</title>
-  <script src="https://code.highcharts.com/highcharts.js"></script>
-  <script src="https://code.highcharts.com/modules/stock.js"></script>
-  <script src="https://cdn.jsdelivr.net/npm/axios/dist/axios.min.js"></script>
-  <style>
-    #chart {
-      width: 800px;
-      height: 600px;
-      margin: 0 auto;
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blasmon - Page d'accueil</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
-  <div>
-    <label for="crypto-select">Choisissez une cryptomonnaie :</label>
-    <select id="crypto-select" onchange="fetchChartData(this.value)">
-      <option value="MATIC">Matic (MATIC)</option>
-      <option value="BTC">Bitcoin (BTC)</option>
-      <option value="ETH">Ethereum (ETH)</option>
-      <option value="OP">OP (OP)</option>
-      <option value="SOL">Sol (SOL)</option>
-      <option value="ARB">Arb (ARB)</option>
-      <option value="XRP">XRP (XRP)</option>
-    </select>
-  </div>
-  <div id="chart"></div>
-
-  <script>
-    var endTime = Math.floor(Date.now() / 1000);
-    var startTime = endTime - (12 * 60 * 60); // Période de 12 heures en secondes
-
-    var chart;
-
-    function fetchChartData(symbol) {
-      axios.get('https://min-api.cryptocompare.com/data/v2/histominute', {
-        params: {
-          fsym: symbol,
-          tsym: 'USD',
-          limit: 720, // 12 heures * 60 minutes
-          toTs: endTime,
-          aggregate: 1,
-          e: 'CCCAGG'
-        }
-      })
-      .then(function(response) {
-        var data = response.data.Data.Data;
-
-        var chartData = [];
-        for (var i = 0; i < data.length; i++) {
-          var timestamp = data[i].time * 1000;
-          var open = data[i].open;
-          var high = data[i].high;
-          var low = data[i].low;
-          var close = data[i].close;
-          var color;
-
-          if (close >= open) {
-            color = 'green'; // Chandelier ascendant
-          } else {
-            color = 'red'; // Chandelier descendant
-          }
-
-          chartData.push({x: timestamp, open: open, high: high, low: low, close: close, color: color});
-        }
-
-        // Supprime le graphique précédent avant d'en créer un nouveau
-        if (chart) {
-          chart.destroy();
-        }
-
-        chart = Highcharts.stockChart('chart', {
-          chart: {
-            width: 800,
-            height: 600
-          },
-          rangeSelector: {
-            enabled: false
-          },
-          title: {
-            text: 'Graphique en chandeliers de ' + symbol
-          },
-          series: [{
-            type: 'candlestick',
-            name: 'Prix de ' + symbol,
-            data: chartData,
-            dataGrouping: {
-              forced: true,
-              units: [['minute', [1]]]
-            },
-            color: 'white', // Couleur des chandeliers
-            upColor: 'green', // Couleur des chandeliers ascendants
-            downColor: 'red' // Couleur des chandeliers descendants
-          }]
-        });
-      })
-      .catch(function(error) {
-        console.log('Une erreur s\'est produite lors de la récupération des données de prix:', error);
-      });
-    }
-
-    // Chargement initial du graphique avec le Matic
-    fetchChartData('MATIC');
-  </script>
+    <div class="container">
+        <div class="image-wrapper">
+            <a href="home.html">
+                <img src="intro.jpg" alt="Introduction Blasmon" class="intro-image">
+            </a>
+        </div>
+    </div>
 </body>
 </html>

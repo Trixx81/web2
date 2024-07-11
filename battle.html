@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blastmon Arena - Battle</title>
+    <link rel="stylesheet" href="battle.css">
+    <script src="https://kit.fontawesome.com/ef02cf598a.js" crossorigin="anonymous"></script>
+</head>
+<body>
+    <div class="menu-container">
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="#my-team">My Team</a></li>
+                <li><a href="#last-fight">Last Fight</a></li>
+                <li><a href="#leaderboard">Leaderboard</a></li>
+                <li><a href="#discord" class="icon"><i class="fab fa-discord"></i></a></li>
+                <li><a href="#twitter" class="icon"><i class="fab fa-twitter"></i></a></li>
+            </ul>
+        </nav>
+    </div>
+    <div class="battle-container">
+        <div class="battle-arena">
+            <div class="character" id="player-character">
+                <img id="player-image" src="" alt="Player">
+                <p id="player-name"></p>
+                <div class="health-bar">
+                    <div id="player-health" class="health-bar-fill"></div>
+                    <div class="health-text">100/100</div>
+                </div>
+            </div>
+            <div class="vs-container">
+                <img id="vs-image" src="welcome.png" alt="VS">
+                <div id="countdown" class="countdown"></div>
+            </div>
+            <div class="character" id="opponent-character">
+                <img id="opponent-image" src="" alt="Opponent">
+                <p id="opponent-name"></p>
+                <div class="health-bar">
+                    <div id="opponent-health" class="health-bar-fill"></div>
+                    <div class="health-text">100/100</div>
+                </div>
+            </div>
+        </div>
+        <div id="battle-log" class="battle-log"></div>
+    </div>
+    <script src="battle.js"></script>
+</body>
+</html>
